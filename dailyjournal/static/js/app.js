@@ -181,25 +181,11 @@ var EditorView = Backbone.View.extend({
 $(document).ready(function() {
 
   var year = new Year('2015');
-  // var onFetch = year.fetch();
-  var yearView = new YearView({collection: year});
-  var editorView = new EditorView();
+  var year_view = new YearView({collection: year});
+  var editor_view = new EditorView();
 
   year.fetch().then(function(entries) {
-    yearView.render().$el.appendTo('#year');
+    year_view.render().$el.prependTo('.year-wrapper');
   });
-
-  // var calendar = new Calendar();
-  // window.calendar = calendar;
-  // var monthView = new MonthView(calendar, 12); // 12 == December
-
-  // calendar.year = moment().format('YYYY');
-  // monthView.render().$el.appendTo('#months');
-
-  // calendar.fetch().then(function(data) {
-  //   //
-  //   calendar.year = data.year;
-  //   monthView.render().$el.appendTo('#months');
-  // });
 
 });
