@@ -1,4 +1,13 @@
-TODO
+Todo List
 
-- Use angular
-- Allow exporting data to pretty text and json
+* Now
+  - Implement autosave
+  - Add a star when creating a new entry
+  - Do not save blank entries
+  - Delete when entries are blank and remove star
+  - Use angular
+  - Allow exporting data to pretty text and json
+
+
+* Later
+  - Add year navigation.
