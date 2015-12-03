@@ -1,0 +1,31 @@
+{
+  "name": "lib",
+  "authors": [
+    "Miguel Madero <git@miguelmadero.com>"
+  ],
+  "description": "this is my lib",
+  "main": "lib.js",
+  "license": "MIT",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "app",
+    "README.md",
+    "shouldnotcopy.js",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "homepage": "https://github.com/MiguelMadero/lib",
+  "_release": "232748ec96",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "232748ec96819e2cbae7498c29234d843f7ccb96"
+  },
+  "_source": "git://github.com/MiguelMadero/lib.git",
+  "_target": "*",
+  "_originalSource": "lib",
+  "_direct": true
+}

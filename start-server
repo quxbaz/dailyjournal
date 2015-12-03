@@ -1,0 +1,5 @@
+#! /usr/bin/env bash
+
+source dev-setup
+
+python runserver.py

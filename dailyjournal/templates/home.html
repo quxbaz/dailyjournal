@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Daily Journal</title>
+  <!-- <link rel="stylesheet" type="text/css" href="/static/bower_components/normalize-css/normalize.css" /> -->
+  <link rel="stylesheet" type="text/css" href="/static/bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet/less" type="text/css" href="/static/less/style.less" />
+  <script src="/static/bower_components/less/dist/less.js"></script>
+</head>
+
+<body>
+
+  <!-- <div class="container"> -->
+  <!--   <div class="row"> -->
+  <!--     <div id="year" class="col-md-4"></div> -->
+  <!--   </div> -->
+  <!-- </div> -->
+
+  <div class="navigator">
+    <div id="year" class="year"></div>
+  </div>
+
+  <div id="editor" class="editor">
+    <div class="editor-area">
+      <textarea class="form-control" placeholder="How was your day?"></textarea>
+      <div class="editor-controls">
+        <button type="button" class="btn btn-default close-btn">Close</button>
+        <button type="button" class="btn btn-primary save-btn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  {% include "templates.html" %}
+
+  <!-- Libraries -->
+  <script src="/static/bower_components/jquery/dist/jquery.js"></script>
+  <script src="/static/bower_components/underscore/underscore.js"></script>
+  <script src="/static/bower_components/backbone/backbone.js"></script>
+  <script src="/static/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="/static/bower_components/handlebars/handlebars.js"></script>
+  <script src="/static/bower_components/moment/min/moment.min.js"></script>
+
+  <!-- App scripts -->
+  <script src="/static/js/app.js"></script>
+
+</body>
+
+</html>

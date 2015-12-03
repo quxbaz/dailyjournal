@@ -1,0 +1,185 @@
+@font-size-normal: 16px;
+@font-size-small: 12px;
+@sea-blue: #23527c;
+
+.outline {
+  outline: 1px solid #f00;
+}
+
+.border(@color: #f00) {
+  border: 1px solid @color;
+}
+
+.column() {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.hidden {
+  display: none;
+}
+
+.small-caps {
+  text-transform: uppercase;
+  font-size: @font-size-small;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+body {
+  overflow-x: hidden;
+  color: #383838;
+}
+
+textarea.form-control {
+  border-radius: 0;
+}
+
+.days {
+  font-size: 0;
+  > * {
+    font-size: @font-size-normal;
+  }
+}
+
+.day {
+  .column;
+  position: relative;
+  // width: 16px;
+  // height: 28px;
+  width: 100/14%;
+  height: 26px;
+  margin-left: -1px;
+  margin-bottom: -1px;
+  // margin-bottom: 4px;
+  border: 1px solid lighten(@sea-blue, 25%);
+  // border-bottom-width: 2px;
+  // border-bottom-color: lighten(@sea-blue, 48%);
+  background: #ffffff;
+  text-align: center;
+  // transition: transform 80ms ease-in;
+  &:hover {
+    z-index: 2000;
+    cursor: pointer;
+    .outline;
+    border: none;
+  }
+  &.active {
+    z-index: 1000;
+    // background: #c0ffd2;
+    background: #ff0;
+  }
+  &.filled {
+    &:before {
+      // content: "//";
+      content: "★";
+      display: inline-block;
+      margin-top: 4px;
+      font-size: 13px;
+      // color: #f33;
+      // color: #5c2;
+      color: #f56;
+    }
+  }
+}
+
+.end-of-month {
+  // &:after {
+  //   content: "";
+  //   position: absolute;
+  //   left: 0;
+  //   top: 50%;
+  //   width: 100%;
+  //   height: 1px;
+  //   background: lighten(@sea-blue, 25%);
+  //   background: #f00;
+  // }
+  // background: #e8ffe2;
+  // background: #e8f2ff;
+}
+
+.navigator {
+  position: relative;
+  width: 45%;
+  padding-top: 32px;
+  .year {
+    position: absolute;
+    right: 8px;
+    width: 240px;
+  }
+}
+
+.year-label, .date-label {
+  text-align: center;
+  font-family: courier;
+  font-size: @font-size-small;
+  font-weight: bold;
+  // .small-caps;
+}
+
+.year-label {
+  margin-bottom: 4px;
+}
+
+.date-label {
+  margin-top: 4px;
+  height: 24px;
+  text-transform: capitalize;
+}
+
+.editor {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 55%;
+  height: 100%;
+  background: #333;
+  transition: right 100ms ease-out;
+  &.active {
+    right: 0;
+  }
+  .editor-area {
+    .column;
+    width: 400px;
+    height: 100%;
+    padding-bottom: 90px;
+  }
+  .editor-controls {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 90px;
+    padding-top: 12px;
+    padding-right: 12px;
+    text-align: right;
+    background: #fff;
+    border-left: 1px solid #ccc;
+    .btn {
+      padding-top: 8px;
+      padding-bottom: 7px;
+      border-radius: 32px;
+      font-size: 13px;
+      letter-spacing: 1px;
+      color: #666;
+    }
+    .btn-primary {
+      // background: #02bbde;
+      background: #04a932;
+      padding-left: 32px;
+      padding-right: 32px;
+      border: none;
+      color: #fff;
+      font-weight: bold;
+      // text-transform: uppercase;
+    }
+  }
+  textarea.form-control {
+    resize: none;
+    height: 100%;
+    border: none;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    font-family: courier;
+    font-weight: bold;
+  }
+}

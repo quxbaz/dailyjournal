@@ -1,0 +1,4 @@
+TODO
+
+- Use angular
+- Allow exporting data to pretty text and json
