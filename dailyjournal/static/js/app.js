@@ -75,16 +75,9 @@ var Year = Backbone.Collection.extend({
     this.year = year;
   },
 
-  // comparator: function(a, b) {
-  //   var x = momentf(a.get('date'));
-  //   var y = momentf(b.get('date'));
-  //   if (x.isBefore(y))
-  //     return -1;
-  //   else if (x.isAfter(y))
-  //     return 1;
-  //   else
-  //     return 0;
-  // }
+  comparator: function(entry) {
+    return entry.get('date');
+  }
 
 });
 
