@@ -19,7 +19,7 @@
         <textarea class="form-control" placeholder="How was your day?"></textarea>
         <div class="editor-controls">
           <button type="button" class="btn btn-default close-btn">Close</button>
-          <button type="button" class="btn btn-primary save-btn">Save</button>
+          <!-- <button type="button" class="btn btn-primary save-btn">Save</button> -->
         </div>
       </div>
     </div>
@@ -34,6 +34,11 @@
   <script src="/static/bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="/static/bower_components/handlebars/handlebars.js"></script>
   <script src="/static/bower_components/moment/min/moment.min.js"></script>
+
+  <!-- Bootstrapped data -->
+  <script>
+    var _bootstrappedEntries = {{entries|tojson}};
+  </script>
 
   <!-- App scripts -->
   <script src="/static/js/app.js"></script>

@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request, render_template, jsonify
 from flask.ext.restful import Api, Resource
 from dailyjournal import models
 from dailyjournal import db
@@ -8,7 +8,8 @@ rest = Api(blueprint)
 
 @blueprint.route('/')
 def app():
-  return render_template('home.html')
+  entries = [entry.serialized for entry in db.session.query(models.Entry).all()]
+  return render_template('home.html', entries=entries)
 
 class Year(Resource):
   def get(self):

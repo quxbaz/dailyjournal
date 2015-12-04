@@ -138,7 +138,8 @@ var EditorView = Backbone.View.extend({
   events: {
     'open'             : 'open',
     'click .close-btn' : 'close',
-    'click .save-btn'  : 'save'
+    'click .save-btn'  : 'save',
+    'input textarea'   : 'onChange'
   },
 
   initialize: function() {
@@ -177,9 +178,14 @@ var EditorView = Backbone.View.extend({
   save: function(event) {
     if (this.getText() == '')
       return;
+    var that = this;
     if (this.entry == null)
       this.entry = new Entry({'date': $('.day.active').data('date')});
     this.entry.save({'text': this.getText()});
+    var entry = _.find($('.day'), function(el) {
+      return $(el).data('date') == that.entry.get('date');
+    });
+    $(entry).addClass('filled');
   },
 
   enableAutosave: function() {
@@ -193,6 +199,12 @@ var EditorView = Backbone.View.extend({
   disableAutosave: function() {
     this.lastText = '';
     clearInterval(this.autosaveId);
+  },
+
+  // TODO
+  onChange: function(event) {
+    if (this.getText() == '')
+      console.log('empty');
   }
 
 });
@@ -217,16 +229,15 @@ $(document).ready(function() {
 
   var currentYear = moment().format('YYYY');
   var year = new Year(currentYear);
+  year.reset(_bootstrappedEntries);
   var yearView = new YearView({collection: year});
   var editorView = new EditorView();
 
-  year.fetch().then(function(entries) {
-    // Creating Entry models where no entries currently exist.
-    iterYear(function(date, i) {
-      if (!year.findWhere({'date': date}))
-        year.add(new Entry({'date': date}));
-    }, currentYear);
-    yearView.render().$el.prependTo('.year-wrapper');
-  });
+  // Creating Entry models where no entries currently exist.
+  iterYear(function(date, i) {
+    if (!year.findWhere({'date': date}))
+      year.add(new Entry({'date': date}));
+  }, currentYear);
+  yearView.render().$el.prependTo('.year-wrapper');
 
 });
