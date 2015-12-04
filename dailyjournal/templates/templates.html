@@ -1,30 +1,13 @@
 {% raw %}
 
 <script type="text/x-handlebars-template" id="year-template">
-  <div class="year-label">{{year}}</div>
+  <div class="year-label">{{year.year}}</div>
   <div class="days">
-    {{#each days}}
+    {{#each year}}
       <span class="day {{#if id}}filled{{/if}} {{#if is_end_of_month}}end-of-month{{/if}}" data-date="{{date}}"></span>
     {{/each}}
   </div>
   <div class="date-label"></div>
-</script>
-
-<script type="text/x-handlebars-template" id="month-template">
-  <div class="days-of-the-week">
-    <span>Sun</span>
-    <span>Mon</span>
-    <span>Tue</span>
-    <span>Wed</span>
-    <span>Thu</span>
-    <span>Fri</span>
-    <span>Sat</span>
-  </div>
-  {{#range 1 days_in_month}}
-    {{#to_break_line iterator_n}}
-      <a class="day" href="">{{iterator_n}}</a>
-    {{/to_break_line}}
-  {{/range}}
 </script>
 
 {% endraw %}
