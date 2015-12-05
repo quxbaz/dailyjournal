@@ -45,6 +45,12 @@ Handlebars.registerHelper('to_break_line', function(day, block) {
   }
 });
 
+// Gets the day element matching the date given.
+function $getDay(date) {
+  return $(_.find($('.day'), function(el) {
+    return $(el).data('date') == date;
+  }));
+}
 
 // Models & views
 
@@ -102,11 +108,8 @@ var YearView = Backbone.View.extend({
     $('.day', this.el).removeClass('active');
     var $day = $(event.currentTarget);
     $day.addClass('active');
-    var date = $day.data('date');
-    var entry = new Entry({'date': date});
-    entry.fetch({data: {'date': date}}).then(function(data) {
-      $('#editor').trigger('open', entry);
-    });
+    var entry = this.collection.findWhere({'date': $day.data('date')});
+    $('#editor').trigger('open', entry);
   },
 
   clearDateLabel: function(event) {
@@ -139,7 +142,7 @@ var EditorView = Backbone.View.extend({
     'open'             : 'open',
     'click .close-btn' : 'close',
     'click .save-btn'  : 'save',
-    'input textarea'   : 'onChange'
+    'input textarea'   : 'checkToDelete'
   },
 
   initialize: function() {
@@ -182,10 +185,7 @@ var EditorView = Backbone.View.extend({
     if (this.entry == null)
       this.entry = new Entry({'date': $('.day.active').data('date')});
     this.entry.save({'text': this.getText()});
-    var entry = _.find($('.day'), function(el) {
-      return $(el).data('date') == that.entry.get('date');
-    });
-    $(entry).addClass('filled');
+    $getDay(this.entry.get('date')).addClass('filled');
   },
 
   enableAutosave: function() {
@@ -193,7 +193,7 @@ var EditorView = Backbone.View.extend({
     this.autosaveId = setInterval(_.bind(function() {
       if (this.getText() != this.lastText)
         this.save();
-    }, this), 3000);
+    }, this), 2000);
   },
 
   disableAutosave: function() {
@@ -201,10 +201,17 @@ var EditorView = Backbone.View.extend({
     clearInterval(this.autosaveId);
   },
 
-  // TODO
-  onChange: function(event) {
-    if (this.getText() == '')
-      console.log('empty');
+  checkToDelete: function(event) {
+    if (!this.entry.id)
+      return;
+    var that = this;
+    var date = this.entry.get('date');
+    if (this.getText() == '') {
+      this.entry.destroy().then(function() {
+        $getDay(date).removeClass('filled');
+        that.close();
+      });
+    }
   }
 
 });

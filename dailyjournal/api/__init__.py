@@ -38,6 +38,7 @@ class Entry(Resource):
     except:
       db.session.rollback()
     return entry.serialized
+  # Fix this, query by id, not date
   def put(self, id):
     content = request.get_json()
     date = content.get('date')
@@ -50,6 +51,10 @@ class Entry(Resource):
       return entry.serialized
     else:
       return {}
+  def delete(self, id):
+    query = db.session.query(models.Entry).get(id) # Add error checking here.
+    db.session.delete(query)
+    return '', 204
 
 rest.add_resource(Year, '/year')
 rest.add_resource(Entry, '/entry', '/entry/<id>')
