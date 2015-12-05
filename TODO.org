@@ -1,9 +1,0 @@
-Todo List
-
-* Now
-  - Use angular
-  - Use pipeline tool (grunt, gulp)
-  - Allow exporting data to pretty text and json
-
-* Later
-  - Add year navigation.
