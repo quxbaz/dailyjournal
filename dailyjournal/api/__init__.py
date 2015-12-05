@@ -18,19 +18,14 @@ class Year(Resource):
     return [entry.serialized for entry in entries if entry.year == year]
 
 class Entry(Resource):
-  def get(self):
-    date = request.args.get('date')
-    query = db.session.query(models.Entry).filter(models.Entry.date == date)
-    if query.count() == 1:
-      return query.one().serialized
-    else:
-      return {}
+  def get(self, id):
+    return db.session.query(models.Entry).get(id).serialized
   def post(self):
     content = request.get_json()
     date = content.get('date')
     query = db.session.query(models.Entry).filter(models.Entry.date == date)
     if (query.count() > 0):
-      return {}
+      return ''
     entry = models.Entry(date=content.get('date'), text=content.get('text'))
     try:
       db.session.add(entry)
