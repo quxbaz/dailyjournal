@@ -38,19 +38,11 @@ class Entry(Resource):
     except:
       db.session.rollback()
     return entry.serialized
-  # Fix this, query by id, not date
   def put(self, id):
-    content = request.get_json()
-    date = content.get('date')
-    query = db.session.query(models.Entry).filter(models.Entry.date == date)
-    if query.count() == 1:
-      entry = query.one()
-      entry.text = content.get('text')
-      db.session.commit()
-      # db.session.rollback()
-      return entry.serialized
-    else:
-      return {}
+    entry = db.session.query(models.Entry).get(id)
+    entry.text = request.get_json().get('text')
+    db.session.commit()
+    return entry.serialized
   def delete(self, id):
     query = db.session.query(models.Entry).get(id) # Add error checking here.
     db.session.delete(query)
